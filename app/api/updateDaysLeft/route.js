@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import { Client } from '@notionhq/client';
 
-export async function GET() {
+export async function GET(request) {
 
-  // if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
-  //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  // }
+  if (request.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
   const blockId =  '2244a4db-cb63-80c7-85c1-e876cc2897c1'
 

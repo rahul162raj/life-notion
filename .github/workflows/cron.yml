@@ -1,0 +1,16 @@
+name: Call Notion Updater
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # every 1 minute for testing
+  workflow_dispatch:      # allow manual run from GitHub
+
+jobs:
+  call-vercel-function:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call your Vercel API Route
+        run: |
+          curl -X GET \
+          -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+          "https://your-project.vercel.app/api/updateDaysLeft"

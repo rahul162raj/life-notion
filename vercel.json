@@ -1,8 +1,7 @@
 {
-  "cron": [
-    {
-      "path": "/api/updateDaysLeft",
-      "schedule": "* * * * *"
+  "functions": {
+    "app/api/updateDaysLeft/route.js": {
+      "maxDuration": 10
     }
-  ]
+  }
 }

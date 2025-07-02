@@ -11,6 +11,9 @@ export async function GET() {
   const diffTime = endOfYear - today;
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
+    // 2️⃣ Add a random number to make it different every call
+  const randomTestValue = Math.floor(Math.random() * 1000); // 0–999
+
   try {
     // 2️⃣ Update the callout block
     const response = await notion.blocks.update({
@@ -20,7 +23,8 @@ export async function GET() {
           {
             type: 'text',
             text: {
-              content: `Days remaining: ${diffDays} days`,
+              // content: `Days remaining: ${diffDays} days`,
+              content: `Days remaining: ${diffDays} days | Test ID: ${randomTestValue}`,
             },
           },
         ],
@@ -29,7 +33,7 @@ export async function GET() {
 
     return NextResponse.json({
       message: 'Callout block updated!',
-      daysLeft: diffDays,
+      daysLeft:       randomTestValue,
       blockId: response.id,
     });
   } catch (error) {

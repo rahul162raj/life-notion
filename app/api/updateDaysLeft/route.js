@@ -16,7 +16,6 @@ export async function GET(request) {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     // 2️⃣ Add a random number to make it different every call
-  const randomTestValue = Math.floor(Math.random() * 1000); // 0–999
 
   try {
     // 2️⃣ Update the callout block
@@ -27,8 +26,7 @@ export async function GET(request) {
           {
             type: 'text',
             text: {
-              // content: `Days remaining: ${diffDays} days`,
-              content: `Days remaining: ${diffDays} days | Test ID: ${randomTestValue}`,
+              content: `Days remaining: ${diffDays} days`,
             },
           },
         ],
@@ -37,7 +35,7 @@ export async function GET(request) {
 
     return NextResponse.json({
       message: 'Callout block updated!',
-      daysLeft:       randomTestValue,
+      daysLeft: daysLeft,
       blockId: response.id,
     });
   } catch (error) {

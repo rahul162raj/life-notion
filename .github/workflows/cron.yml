@@ -2,8 +2,8 @@ name: Call Notion Updater
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # every 1 minute for testing
-  workflow_dispatch:      # allow manual run from GitHub
+    - cron: '0 0 * * *'  # daily at midnight UTC
+  workflow_dispatch:      # allow manual manual run from GitHub
 
 jobs:
   call-vercel-function:
